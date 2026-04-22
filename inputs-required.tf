@@ -66,6 +66,12 @@ variable "container_apps" {
     ingress_transport                  = optional(string, "auto")
     ingress_allow_insecure_connections = optional(bool, false)
     ingress_client_certificate_mode    = optional(string, "ignore")
+    ingress_exposed_port               = optional(number)
+    ingress_additional_port_mappings   = optional(list(object({
+      port         = number
+      external     = optional(bool, true)
+      exposed_port = optional(number)
+    })), [])
     custom_domain = optional(object({
       zone_name                   = string
       zone_resource_group_name    = string

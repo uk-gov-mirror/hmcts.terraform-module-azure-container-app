@@ -148,6 +148,15 @@ resource "azurerm_container_app" "main" {
         latest_revision = true
         percentage      = 100
       }
+
+      dynamic "additional_port_mapping" {
+        for_each = each.value.ingress_additional_port_mappings
+        content {
+          port         = additional_port_mapping.value.port
+          external     = additional_port_mapping.value.external
+          exposed_port = try(additional_port_mapping.value.exposed_port, null)
+        }
+      }
     }
   }
 }
