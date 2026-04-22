@@ -3,8 +3,9 @@ module "multi_container_apps" {
   source = "../"
 
   providers = {
-    azurerm     = azurerm
-    azurerm.dns = azurerm.dns
+    azurerm             = azurerm
+    azurerm.dns         = azurerm.dns
+    azurerm.private_dns = azurerm.private_dns
   }
 
   product   = "test"
